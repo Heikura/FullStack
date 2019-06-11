@@ -1,3 +1,6 @@
+
+## Osa 0.4
+```
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
 palvelin-->selain: HTML-koodi
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
@@ -17,3 +20,4 @@ note over selain:
 selain suorittaa tapahtumankäsittelijän
 joka renderöi muistiinpanot näytölle
 end note
+```
