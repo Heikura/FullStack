@@ -1,6 +1,20 @@
 
 ## Osa 0.4
+### Koodi ja visualisointi tehtävästä.
 ```
+käyttäjä->selain: Käyttäjä syöttää tekstin ja painaa "Save"
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over palvelin:
+Formin data tuodaan notena palvelimelle sekä tallennetaan.
+end note
+
+palvelin-->selain: text/html, status code 302
+
+note over palvelin:
+Tämä tilanne samalla tavalla kuin materiaalissa.
+end note
+
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
 palvelin-->selain: HTML-koodi
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
