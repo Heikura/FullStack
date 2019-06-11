@@ -63,3 +63,24 @@ joka renderöi muistiinpanot näytölle
 end note
 ```
 ![](https://raw.githubusercontent.com/Artoiss/FullStack/master/osa0/osa0.5_kuva.PNG)
+
+## Osa 0.6
+### Koodi ja visualisointi tehtävästä. 
+ ```
+note over käyttäjä:
+Samoja requesteja ei tehdä uudelleen eli 
+tässä kohti jatketaan samasta tilanteesta
+kuin kohdassa 0.5.
+end note
+käyttäjä->selain: Käyttäjä kirjoittaa muistiinpanon ja painaa "Save".
+selain->palvelin: POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over palvelin:
+Erona Osaan 0.4, muistiinpano tuodaan
+Content-tietotyypissä eikä formina.
+Tieto tallennetaan.
+end note
+
+palvelin-->selain:  status code: 201
+```
+![](https://raw.githubusercontent.com/Artoiss/FullStack/master/osa0/osa0.6_kuva.PNG)
