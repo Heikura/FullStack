@@ -21,3 +21,4 @@ selain suorittaa tapahtumankäsittelijän
 joka renderöi muistiinpanot näytölle
 end note
 ```
+![](https://raw.githubusercontent.com/Artoiss/FullStack/master/osa0/osa0.4_kuva.PNG)
