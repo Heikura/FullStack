@@ -9,26 +9,15 @@ const App = () => {
 
   // Headerit
   const text1 = ["Give feedback", "Statistics"]
- 
-  const handleGood = () => {
-    setGood(good + 1)
-  }
-  const handleNeutral = () => {
-    setNeutral(neutral + 1)
-  }
-  const handleBad = () => {
-    setBad(bad + 1)
-  }
-
 
   return (
     <div>
         <Header text={text1[0]} />
       <div>
-        <Button onClick ={handleGood} text = "Good" />
-        <Button onClick ={handleNeutral} text = "Neutral" />
-        <Button onClick ={handleBad} text = "Bad" />
-      </div>  
+        <Button handle ={() => setGood(good+1)} text = "Good" />
+        <Button handle ={() => setNeutral(neutral+1)} text = "Neutral" />
+        <Button handle ={() => setBad(bad+1)} text = "Bad" />
+      </div>
         <Header text={text1[1]} />
       <div>
           Good {good}
@@ -53,6 +42,6 @@ const Button = ({handle, text}) => (
     </button>
 )
 
-ReactDOM.render(<App />, 
+ReactDOM.render(<App />,
   document.getElementById('root')
 )
