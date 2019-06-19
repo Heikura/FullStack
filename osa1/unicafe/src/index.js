@@ -7,6 +7,8 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  const [allClicks, setAll] = useState([0])
+
   // Headerit
   const text1 = ["Give feedback", "Statistics"]
 
@@ -27,6 +29,15 @@ const App = () => {
       </div>
       <div>
           Bad {bad}
+      </div>
+      <div>
+          All
+      </div>
+      <div>
+          Average
+      </div>
+      <div>
+          Positive
       </div>
     </div>
   )
