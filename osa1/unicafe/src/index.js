@@ -35,41 +35,41 @@ const App = () => {
         <Button handle={handleBad} text="Bad" />
       </div>
         <Header text={text1[1]} />
+
         <Statistics good={good} neutral={neutral} bad={bad} all={allClicks}/>
+
     </div>
   )
 }
 
 const Statistics = (props) => {
-    return(
-    <div>
-      <p>
-        Good {props.good}
-      </p>
-      <p>
-        Neutral {props.neutral}
-      </p>
-      <p>
-        Bad {props.neutral}
-      </p>
-      <p>
-        All {props.all}
-      </p>
-      <p>
-        Average {(props.good*1 + props.neutral*0 + props.bad*(-1))/(props.all)}
-      </p>
-      <p>
-        Positive {100*(props.good)/(props.all)} %
-      </p>
-    </div>
-   )
-}
-
-const Stats = (props) => {
-  if (props.text === "Positive"){
-    return <div> {props.text} {props.amount} % </div>
-  }
-  return <div> {props.text} {props.amount} </div>
+    if (props.all > 0){
+      return(
+      <div>
+        <p>
+          Good {props.good}
+        </p>
+        <p>
+          Neutral {props.neutral}
+        </p>
+        <p>
+          Bad {props.neutral}
+        </p>
+        <p>
+          All {props.all}
+        </p>
+        <p>
+          Average {(props.good*1 + props.neutral*0 + props.bad*(-1))/(props.all)}
+        </p>
+        <p>
+          Positive {100*(props.good)/(props.all)} %
+        </p>
+      </div>
+     )
+    }
+    else { 
+      return <div> No feedback given. </div>
+    }
 }
 
 const Header = (props) => {
