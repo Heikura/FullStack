@@ -35,9 +35,7 @@ const App = () => {
         <Button handle={handleBad} text="Bad" />
       </div>
         <Header text={text1[1]} />
-
         <Statistics good={good} neutral={neutral} bad={bad} all={allClicks}/>
-
     </div>
   )
 }
@@ -45,14 +43,30 @@ const App = () => {
 const Statistics = (props) => {
     if (props.all > 0){
       return(
-      <div>
+      <table>
+      <tbody>
+
+      <tr>
         <Statistic text="Good" value={props.good} />
+      </tr>
+      <tr>
         <Statistic text="Neutral" value={props.neutral} />
+      </tr>
+      <tr>
         <Statistic text="Bad" value={props.bad} />
+      </tr>
+      <tr>
         <Statistic text="All" value={props.all} />
+      </tr>
+      <tr>
         <Statistic text="Average" value={(props.good*1 + props.neutral*0 + props.bad*(-1))/(props.all)} />
+      </tr>
+      <tr>
         <Statistic text="Positive" value={(100*(props.good)/(props.all))} />
-      </div>
+      </tr>
+      </tbody>
+      </table>
+
      )
     }
     else {
@@ -62,9 +76,12 @@ const Statistics = (props) => {
 
 const Statistic = (props) => {
   if ((props.text) === "Positive") {
-    return <p> {props.text} {props.value} % </p>
+    return <td> {props.text} {props.value.toFixed(1)} % </td>
   }
-  return <p> {props.text} {props.value} </p>
+  if ((props.text) ==="Average"){
+    return <td> {props.text} {props.value.toFixed(1)} </td>
+  }
+  return <td> {props.text} {props.value} </td>
 }
 
 const Header = (props) => {
