@@ -7,29 +7,62 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const [allClicks, setAll] = useState([0])
+  const [allClicks, setAll] = useState(0)
 
   // Headerit
   const text1 = ["Give feedback", "Statistics"]
 
+  const handleGood = () => {
+    setGood(good+1)
+    setAll(allClicks + 1)
+  }
+  const handleNeutral = () => {
+    setNeutral(neutral+1)
+    setAll(allClicks + 1)
+  }
+  const handleBad = () => {
+    setBad(bad+1)
+    setAll(allClicks + 1)
+  }
 
   return (
     <div>
         <Header text={text1[0]} />
+
       <div>
-        <Button handle={() => setGood(good + 1)} text="Good" />
-        <Button handle={() => setNeutral(neutral+1)} text="Neutral" />
-        <Button handle={() => setBad(bad+1)} text="Bad" />
+        <Button handle={handleGood} text="Good" />
+        <Button handle={handleNeutral} text="Neutral" />
+        <Button handle={handleBad} text="Bad" />
       </div>
         <Header text={text1[1]} />
-        <Stats amount={good} text="Good"/>
-        <Stats amount={neutral} text="Neutral" />
-        <Stats amount={bad} text="Bad" />
-        <Stats amount={good+neutral+bad} text={"All"} />
-        <Stats amount={((good)*(1) + (neutral)*(0) + bad*(-1))/(good+bad+neutral)} text={"Average"} />
-        <Stats amount={((good)/(good+bad+neutral))*100} text={"Positive"} />
+        <Statistics good={good} neutral={neutral} bad={bad} all={allClicks}/>
     </div>
   )
+}
+
+const Statistics = (props) => {
+    return(
+    <div>
+      <p>
+        Good {props.good}
+      </p>
+      <p>
+        Neutral {props.neutral}
+      </p>
+      <p>
+        Bad {props.neutral}
+      </p>
+      <p>
+        All {props.all}
+      </p>
+      <p>
+        Average {(props.good*1 + props.neutral*0 + props.bad*(-1))/(props.all)}
+      </p>
+      <p>
+        Positive {100*(props.good)/(props.all)} %
+      </p>
+    </div>
+   )
 }
 
 const Stats = (props) => {
