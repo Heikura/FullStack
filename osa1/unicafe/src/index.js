@@ -36,9 +36,6 @@ const Stats = (props) => {
   if (props.text === "Positive"){
     return <div> {props.text} {props.amount} % </div>
   }
-  else{
-
-  }
   return <div> {props.text} {props.amount} </div>
 }
 
