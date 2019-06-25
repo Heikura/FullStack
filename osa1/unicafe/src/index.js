@@ -46,30 +46,25 @@ const Statistics = (props) => {
     if (props.all > 0){
       return(
       <div>
-        <p>
-          Good {props.good}
-        </p>
-        <p>
-          Neutral {props.neutral}
-        </p>
-        <p>
-          Bad {props.neutral}
-        </p>
-        <p>
-          All {props.all}
-        </p>
-        <p>
-          Average {(props.good*1 + props.neutral*0 + props.bad*(-1))/(props.all)}
-        </p>
-        <p>
-          Positive {100*(props.good)/(props.all)} %
-        </p>
+        <Statistic text="Good" value={props.good} />
+        <Statistic text="Neutral" value={props.neutral} />
+        <Statistic text="Bad" value={props.bad} />
+        <Statistic text="All" value={props.all} />
+        <Statistic text="Average" value={(props.good*1 + props.neutral*0 + props.bad*(-1))/(props.all)} />
+        <Statistic text="Positive" value={(100*(props.good)/(props.all))} />
       </div>
      )
     }
-    else { 
+    else {
       return <div> No feedback given. </div>
     }
+}
+
+const Statistic = (props) => {
+  if ((props.text) === "Positive") {
+    return <p> {props.text} {props.value} % </p>
+  }
+  return <p> {props.text} {props.value} </p>
 }
 
 const Header = (props) => {
