@@ -12,12 +12,11 @@ const anecdotes = [
 
 
 const App = (props) => {
-  const [selected, setSelected] = useState(0)
-  const [vote, setVote] = useState(0)
-
   // Luo listan pituisen arrayn täynnä nollia
   const points = Array(anecdotes.length).fill(0)
-  const copy = points
+  
+  const [selected, setSelected] = useState(0)
+  const [vote, setVote] = useState(points)
 
   // Arpoo anekdootin listasta
   const handle = () => {
@@ -25,10 +24,10 @@ const App = (props) => {
   }
 
   // Lisää äänestyksen
-  const handleVote = () => {
-    {console.log(selected)}
-    copy[selected] += 1
-    {console.log(copy[0])}
+  const handleVote = (val) => {
+    const copy = [...vote]
+    copy[val] += 1
+    setVote(copy)
   }
 
   return (
@@ -36,19 +35,12 @@ const App = (props) => {
       {console.log()}
       {props.anecdotes[selected]}
       <br/>
-      <Button handle={handleVote} text="vote" />
-      <Button handle={handle} text="next anecdote" />
-      {copy[selected]}
+      <button type="button" onClick={() => handleVote(selected)}>vote</button>
+      <button type="button" onClick={() => handle()}>next anecdote</button>
+      {vote[selected]}
     </div>
   )
 }
-
-const Button = (props) => (
-  <button onClick={props.handle}>
-      {props.text}
-    </button>
-)
-
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
