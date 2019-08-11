@@ -14,7 +14,7 @@ const anecdotes = [
 const App = (props) => {
   // Luo listan pituisen arrayn täynnä nollia
   const points = Array(anecdotes.length).fill(0)
-  
+
   const [selected, setSelected] = useState(0)
   const [vote, setVote] = useState(points)
 
@@ -30,14 +30,24 @@ const App = (props) => {
     setVote(copy)
   }
 
+  // Haetaan suurin arvo listasta
+  const max = Math.max(...vote)
+
+  // Haetaan maksimiarvon indeksi listasta
+  const max_index = vote.indexOf(max)
+
   return (
     <div>
-      {console.log()}
+      <h2> Anecdote of the day </h2>
       {props.anecdotes[selected]}
+      <br/>
+      <p>has {vote[selected]} votes</p>
       <br/>
       <button type="button" onClick={() => handleVote(selected)}>vote</button>
       <button type="button" onClick={() => handle()}>next anecdote</button>
-      {vote[selected]}
+      <h2> Anecdote with most votes </h2>
+      {props.anecdotes[max_index]}
+      <p>has {max} votes</p>
     </div>
   )
 }
