@@ -22,7 +22,7 @@ const App = () => {
       },
       {
         name: 'Redux',
-        exercises: 11,
+        exercises: 13,
         id: 4
       }
     ]
@@ -64,12 +64,15 @@ const Part = (props) => {
   return <p> {props.name} {props.exercises} </p>
 }
 
-
-const Total = (props) => {
+const Total = ({parts}) => {
+  const reducer = (accumulator, currentValue) => {
+    console.log(accumulator+currentValue.exercises)
+    return accumulator + currentValue.exercises
+  }
   return (
-    <p>
-      Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}
-    </p>
+    <b>
+      Total of {parts.reduce(reducer, 0)} exercises
+    </b>
   )
 }
 
