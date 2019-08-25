@@ -49,18 +49,19 @@ const Header = (props) => {
   return <h1> {props.course} </h1>
 }
 
-const Content = (props) => {
-  return (
-    <div>
-      <Part parts={props.parts[0]} />
-      <Part parts={props.parts[1]} />
-      <Part parts={props.parts[2]} />
-    </div>
-  )
+const Content = ({parts}) => {
+    const rows = (parts) => parts.map(part =>
+      <Part
+        key={part.id}
+        name={part.name}
+        exercises={part.exercises}
+      />
+    )
+    return (rows(parts))
 }
 
 const Part = (props) => {
-  return <p> {props.parts.name} {props.parts.exercises} </p>
+  return <p> {props.name} {props.exercises} </p>
 }
 
 
