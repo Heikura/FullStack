@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Filter from './Filter'
+import Countries from './Countries'
 
 const App = () => {
 
   const [query, setQuery] = useState([])
+  const [currentFilter, setFilter] = useState('')
 
   useEffect(() => {
     axios
-    .get('https://restcountries.eu/rest/v2/name/{su}')
+    .get('https://restcountries.eu/rest/v2/all')
     .then(response => {
       setQuery(response.data)
     })
-  });
-  console.log(setQuery.length)
+  }, []);
 
+  const handleFilter = (event) => {
+    setFilter(event.target.value)
+  }
 
   return (
     <div>
-      <h2>asd</h2>
+      <Filter currentFilter={currentFilter} setFilter={handleFilter}/>
+      <Countries query={query} currentFilter={currentFilter}/>
     </div>
   )
 }
