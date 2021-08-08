@@ -3,4 +3,5 @@ https://fullstackopen.com/
 
 - [x] Osa 0
 - [x] Osa 1
-- [ ] Osa 2
+- [x] Osa 2
+- [ ] Osa 3
