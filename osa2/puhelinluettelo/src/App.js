@@ -33,6 +33,14 @@ const App = () => {
 
     }
   }
+  const deletePerson = (id, name) => {
+      //console.log(name)
+      if (window.confirm(`Delete ${name}?`)){
+      personService
+        .remove(id)
+      setPersons(persons.filter((person) => person.id !== id))
+    }
+  }
 
   // Get data from json db
   useEffect(() => {
@@ -64,7 +72,7 @@ const App = () => {
       newNum={newNum} handleNum={handleNum} />
 
       <h2>Numbers</h2>
-      <Persons persons={persons} currentFilter={currentFilter} />
+      <Persons persons={persons} handleDelete={deletePerson} currentFilter={currentFilter} />
     </div>
   )
 
