@@ -16,7 +16,21 @@ const App = () => {
   const addPerson = (event) => {
     if (persons.map(p => p.name).includes(newName)){
       event.preventDefault()
-      alert(`${newName} is already added to phonebook`);
+      if (window.confirm(`${newName} is already added, replace the old number?`)){
+        const uPerson = persons.find((p) =>
+          p.name.toLowerCase() === newName.toLowerCase())
+        console.log(uPerson)
+        const personObj = {
+          name: newName,
+          number: newNum
+        }
+        personService
+          .update(uPerson.id, personObj)
+          .then((response) => {
+            setPersons(persons.map(person => person.id !== uPerson.id ? person : response))
+          })
+
+      }
     } else {
       event.preventDefault()
       const personObj = {
