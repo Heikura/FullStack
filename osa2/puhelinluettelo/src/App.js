@@ -4,6 +4,7 @@ import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import axios from 'axios'
 import personService from './services/persons'
+import './index.css'
 
 const App = () => {
   const [ persons, setPersons] = useState([])
@@ -12,6 +13,8 @@ const App = () => {
   const [ newNum, setNewNum ] = useState('')
 
   const [ currentFilter, setFilter] = useState('')
+
+  const [notfMessage, setNotfMessage] = useState(null)
 
   const addPerson = (event) => {
     if (persons.map(p => p.name).includes(newName)){
@@ -29,6 +32,12 @@ const App = () => {
           .then((response) => {
             setPersons(persons.map(person => person.id !== uPerson.id ? person : response))
           })
+          setNotfMessage(
+            `Changed number for ${newName}.`
+          )
+          setTimeout(() => {
+            setNotfMessage(null)
+          }, 3000)
 
       }
     } else {
@@ -42,7 +51,12 @@ const App = () => {
         .then((response) => {
           setPersons(persons.concat(response))
         })
-
+      setNotfMessage(
+        `Added ${newName}.`
+      )
+      setTimeout(() => {
+        setNotfMessage(null)
+      }, 3000)
     //  setPersons(persons.concat(personObj))
 
     }
@@ -54,6 +68,24 @@ const App = () => {
         .remove(id)
       setPersons(persons.filter((person) => person.id !== id))
     }
+    setNotfMessage(
+      `Deleted ${name}`
+    )
+    setTimeout(() => {
+      setNotfMessage(null)
+    }, 3000)
+  }
+
+  const Notification = ({ message }) => {
+    if (message === null) {
+      return null
+    }
+
+    return (
+      <div className="notification">
+        {message}
+        </div>
+    )
   }
 
   // Get data from json db
@@ -80,6 +112,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notfMessage}/>
       <Filter currentFilter={currentFilter} setFilter={handleFilter}/>
       <h2> add a new </h2>
       <PersonForm addPerson={addPerson} newName={newName} handlePerson={handlePerson}
