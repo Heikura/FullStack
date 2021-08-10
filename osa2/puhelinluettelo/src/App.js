@@ -91,7 +91,7 @@ const App = () => {
   // Get data from json db
   useEffect(() => {
     axios
-    .get('http://localhost:3001/persons')
+    .get(personService.baseUrl)
     .then(response => {
       setPersons(response.data)
     })
